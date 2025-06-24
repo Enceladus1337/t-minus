@@ -1,56 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Dancing Script', cursive;
-  background: linear-gradient(to right, #ffe6f0, #fff0f5);
+  font-family: 'Lora', serif;
+  background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1500&q=80') no-repeat center center fixed;
+  background-size: cover;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  color: #c2185b;
 }
 
 .container {
-  text-align: center;
-  background: white;
+  background: rgba(0, 0, 0, 0.6);
   padding: 40px 30px;
   border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
   max-width: 400px;
   margin: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
 }
 
 h1 {
   font-size: 2em;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .message {
   font-size: 1.2em;
   margin-bottom: 30px;
-  color: #d81b60;
+  color: #f8bbd0;
 }
 
 #countdown {
   display: flex;
   justify-content: center;
   gap: 15px;
+  flex-wrap: wrap;
 }
 
 #countdown div {
-  background: #ffe0ec;
-  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
   border-radius: 10px;
-  min-width: 60px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  min-width: 70px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 #countdown span {
   font-size: 2em;
   font-weight: bold;
+  display: block;
+  color: #fff;
+}
+
+#countdown p {
+  margin: 0;
+  font-size: 0.9em;
+  color: #ccc;
 }
 
 .footer {
   margin-top: 30px;
   font-size: 1em;
-  color: #880e4f;
+  color: #e0e0e0;
 }

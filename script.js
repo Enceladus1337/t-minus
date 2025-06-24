@@ -1,17 +1,13 @@
-// Set her birthday here — change the month and day
-const birthday = "10-24"; // August 15
+// Change this to her birthday (MM-DD)
+const birthday = "10-24"; // October 24
 
 function getNextBirthday() {
   const today = new Date();
-  const [month, day] = birthday.split("-").map(Number);
+  const [month, day] = birthday.split('-').map(Number);
   let year = today.getFullYear();
-
-  let nextBday = new Date(year, month - 1, day);
-  if (nextBday < today) {
-    nextBday.setFullYear(year + 1);
-  }
-
-  return nextBday;
+  let bday = new Date(year, month - 1, day);
+  if (bday < today) bday.setFullYear(year + 1);
+  return bday;
 }
 
 function updateCountdown() {
@@ -30,5 +26,4 @@ function updateCountdown() {
   document.getElementById("seconds").textContent = seconds;
 }
 
-// Run the update every second
 setInterval(updateCountdown, 1000);

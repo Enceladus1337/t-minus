@@ -3,92 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Countdown to Isha’s Birthday 💖</title>
+  <title>Countdown to Isha’s Birthday 🎂</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&display=swap" rel="stylesheet">
+  <!-- Font: Bitter -->
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: 'Arial', sans-serif;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Bitter', serif;
+      background-image: url('ghibli.jpg'); /* Replace with your uploaded image */
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
       color: #fff;
       text-align: center;
+      min-height: 100vh;
+      padding: 30px 20px;
       display: flex;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
-      min-height: 100vh;
-      padding: 20px;
+      align-items: center;
       backdrop-filter: blur(2px);
     }
 
     h1 {
-      font-family: 'Lavishly Yours', cursive;
-      font-size: 3.5rem;
-      margin-bottom: 0.5rem;
+      font-size: 3rem;
       color: #ffe3ec;
       text-shadow: 2px 2px 10px #000;
+      margin-bottom: 10px;
     }
 
     #countdown {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: bold;
       background: rgba(0, 0, 0, 0.5);
-      padding: 15px 25px;
-      border-radius: 20px;
+      padding: 15px 30px;
+      border-radius: 15px;
       margin-top: 10px;
       margin-bottom: 30px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
 
     #quote {
-      font-family: 'Lavishly Yours', cursive;
-      font-size: 2rem;
+      font-size: 1.6rem;
+      max-width: 700px;
       margin: 20px auto;
-      max-width: 800px;
       text-shadow: 1px 1px 8px #000;
     }
 
-    .photo-container {
-      margin-top: 20px;
-      border: 5px solid #ffb6c1;
-      border-radius: 50%;
-      overflow: hidden;
-      width: 180px;
-      height: 180px;
-      box-shadow: 0 0 20px #ffb6c1;
-    }
-
-    .photo-container img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     .audio-player {
-      margin-top: 20px;
-      background: rgba(0, 0, 0, 0.5);
+      margin-top: 30px;
+      background: rgba(0, 0, 0, 0.6);
       padding: 10px 20px;
-      border-radius: 20px;
+      border-radius: 15px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2rem;
+      }
+      #countdown {
+        font-size: 1.4rem;
+      }
+      #quote {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <h1>Counting Down to Isha’s Birthday 💖</h1>
+  <h1>Countdown to Isha’s Birthday 💖</h1>
 
-  <div id="countdown"></div>
+  <div id="countdown">Loading...</div>
 
   <div id="quote">Loading quote...</div>
-
-  <div class="photo-container">
-    <img src="girl.jpg" alt="Isha's Picture">
-  </div>
 
   <div class="audio-player">
     <audio controls autoplay loop>
@@ -98,7 +93,7 @@
   </div>
 
   <script>
-    // Countdown Logic
+    // Countdown logic
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("October 24, 2025 00:00:00").getTime();
 
@@ -123,23 +118,23 @@
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Quote Rotation
+    // Rotating quotes
     const quotes = [
-      "I orbit around you, Isha—forever pulled by your gravity.",
+      "I orbit around you, Isha — forever pulled by your gravity.",
       "Even moons need someone to shine for.",
       "You're the reason this frozen heart found warmth.",
       "Among stars, I found a home in your eyes.",
-      "I may be Enceladus, cold and distant—until you melted me."
+      "I may be Enceladus, cold and distant — until you melted me."
     ];
 
     function updateQuote() {
-      const now = new Date();
-      const hour = now.getHours();
+      const hour = new Date().getHours();
       const index = Math.floor(hour / 3) % quotes.length;
       document.getElementById("quote").textContent = quotes[index];
     }
 
     updateQuote();
   </script>
+
 </body>
 </html>

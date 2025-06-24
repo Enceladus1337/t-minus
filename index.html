@@ -2,43 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Birthday Countdown</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <!-- Music -->
-  <div class="audio-player">
-    <audio autoplay loop>
-      <source src="https://cdn.pixabay.com/download/audio/2022/03/17/audio_a2c52dce54.mp3?filename=moonlight-romance-21671.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-
-  <!-- Hearts -->
-  <div class="heart" style="left: 10%; animation-delay: 1s;"></div>
-  <div class="heart" style="left: 30%; animation-delay: 3s;"></div>
-  <div class="heart" style="left: 50%; animation-delay: 5s;"></div>
-  <div class="heart" style="left: 70%; animation-delay: 2s;"></div>
-  <div class="heart" style="left: 90%; animation-delay: 4s;"></div>
-
-  <!-- Shooting Stars -->
-  <div class="shooting-star" style="top: 10%; left: 90%; animation-delay: 2s;"></div>
-  <div class="shooting-star" style="top: 20%; left: 95%; animation-delay: 5s;"></div>
-
-  <!-- Main content -->
   <div class="container">
-    <h1>Counting Down to Your Special Day 🎂</h1>
-    <div class="message">My love, here's how long until your birthday arrives 🩷</div>
+    <h1>Countdown to Her Birthday</h1>
+    <div class="message">Because even the stars need a reason to shine ✨</div>
     <div id="countdown">
-      <div><span id="days">--</span><p>Days</p></div>
-      <div><span id="hours">--</span><p>Hours</p></div>
-      <div><span id="minutes">--</span><p>Minutes</p></div>
-      <div><span id="seconds">--</span><p>Seconds</p></div>
+      <div><span id="days"></span><p>Days</p></div>
+      <div><span id="hours"></span><p>Hours</p></div>
+      <div><span id="minutes"></span><p>Minutes</p></div>
+      <div><span id="seconds"></span><p>Seconds</p></div>
     </div>
-    <div class="footer">You're my moon in a world full of stars 🌙</div>
+    <div class="footer">
+      Even Enceladus can't freeze the fire I feel for you 🥺🪐
+    </div>
   </div>
 
-  <script src="script.js"></script>
+  <audio class="audio-player" autoplay loop controls>
+    <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_8b1664ba09.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const countdown = () => {
+      const endDate = new Date("October 24, 2025 00:00:00").getTime();
+      const now = new Date().getTime();
+      const timeLeft = endDate - now;
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    };
+
+    setInterval(countdown, 1000);
+    countdown();
+
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.style.left = `${Math.random() * 100}vw`;
+      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
+    }, 1000);
+
+    // Shooting stars
+    setInterval(() => {
+      const star = document.createElement('div');
+      star.className = 'shooting-star';
+      star.style.left = `${Math.random() * 100}vw`;
+      document.body.appendChild(star);
+      setTimeout(() => star.remove(), 3000);
+    }, 5000);
+  </script>
 </body>
 </html>

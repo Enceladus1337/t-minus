@@ -1,212 +1,95 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Birthday Countdown</title>
-  <link rel="stylesheet" href="style.css" />
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
-    body {
-      margin: 0;
-      font-family: 'Lora', serif;
-      background: url('https://images.unsplash.com/photo-1606744824161-8d3761d37b14?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #ffffff;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      position: relative;
-    }
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+        <title>Countdown</title>
+        <link rel="stylesheet" href="static/css/jbclock.css" type="text/css" media="all" />
+        <script type="text/javascript" src="static/js/jquery-1.8.0.min.js"></script>
+        <script type="text/javascript" src="static/js/jbclock.js"></script>
+                <script type="text/javascript">
+            $(document).ready(function(){
+                JBCountDown({
+                    secondsColor : "#ffdc50",
+                    secondsGlow  : "none",
 
-    body::before {
-      content: "";
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-      animation: twinkle 100s linear infinite;
-      opacity: 0.2;
-      z-index: 0;
-    }
+                    minutesColor : "#9cdb7d",
+                    minutesGlow  : "none",
 
-    @keyframes twinkle {
-      from { transform: translate(0, 0); }
-      to { transform: translate(-500px, -500px); }
-    }
+                    hoursColor   : "#378cff",
+                    hoursGlow    : "none",
 
-    .container {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 40px 30px;
-      border-radius: 20px;
-      text-align: center;
-      max-width: 400px;
-      margin: 20px;
-      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-      z-index: 2;
-      position: relative;
-    }
+                    daysColor    : "#ff6565",
+                    daysGlow     : "none",
 
-    h1 {
-      font-size: 2em;
-      margin-bottom: 15px;
-    }
+                    startDate   : "{{ start }}",
+                    endDate     : "{{ end }}",
+                    now         : "{{ now }}"
+                });
+            });
+        </script>
+    </head>
+    <body>
 
-    .message {
-      font-size: 1.2em;
-      margin-bottom: 30px;
-      color: #f8bbd0;
-    }
-
-    #countdown {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-    }
-
-    #countdown div {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px;
-      border-radius: 10px;
-      min-width: 70px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    #countdown span {
-      font-size: 2em;
-      font-weight: bold;
-      display: block;
-      color: #fff;
-    }
-
-    #countdown p {
-      margin: 0;
-      font-size: 0.9em;
-      color: #ccc;
-    }
-
-    .footer {
-      margin-top: 30px;
-      font-size: 1em;
-      color: #e0e0e0;
-    }
-
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      transform: rotate(45deg);
-      animation: float 10s infinite ease-in;
-      opacity: 0.7;
-      z-index: 1;
-    }
-    .heart::before, .heart::after {
-      content: "";
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background: red;
-      border-radius: 50%;
-    }
-    .heart::before {
-      top: -10px;
-      left: 0;
-    }
-    .heart::after {
-      left: -10px;
-      top: 0;
-    }
-    @keyframes float {
-      0% {bottom: -20px; left: 50%; opacity: 0;}
-      50% {opacity: 0.5;}
-      100% {bottom: 100%; left: 60%; opacity: 0;}
-    }
-
-    .shooting-star {
-      position: absolute;
-      top: 0;
-      left: 100%;
-      width: 2px;
-      height: 100px;
-      background: white;
-      animation: shoot 3s linear infinite;
-      opacity: 0;
-    }
-    @keyframes shoot {
-      0% { transform: translateX(0) translateY(0); opacity: 0; }
-      10% { opacity: 1; }
-      100% { transform: translateX(-600px) translateY(600px); opacity: 0; }
-    }
-
-    .audio-player {
-      position: absolute;
-      bottom: 15px;
-      left: 15px;
-      z-index: 3;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h1>Countdown to Her Birthday</h1>
-    <div class="message">Because even the stars need a reason to shine ✨</div>
-    <div id="countdown">
-      <div><span id="days"></span><p>Days</p></div>
-      <div><span id="hours"></span><p>Hours</p></div>
-      <div><span id="minutes"></span><p>Minutes</p></div>
-      <div><span id="seconds"></span><p>Seconds</p></div>
-    </div>
-    <div class="footer">
-      Even Enceladus can't freeze the fire I feel for you 🥺🪐
-    </div>
-  </div>
-
-  <audio class="audio-player" autoplay loop controls>
-    <source src="https://cdn.pixabay.com/download/audio/2022/10/16/audio_8b1664ba09.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    const countdown = () => {
-      const endDate = new Date("October 24, 2025 00:00:00").getTime();
-      const now = new Date().getTime();
-      const timeLeft = endDate - now;
-
-      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
-
-      document.getElementById("days").innerText = days;
-      document.getElementById("hours").innerText = hours;
-      document.getElementById("minutes").innerText = minutes;
-      document.getElementById("seconds").innerText = seconds;
-    };
-
-    setInterval(countdown, 1000);
-    countdown();
-
-    setInterval(() => {
-      const heart = document.createElement('div');
-      heart.className = 'heart';
-      heart.style.left = `${Math.random() * 100}vw`;
-      heart.style.animationDuration = `${5 + Math.random() * 5}s`;
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
-    }, 1000);
-
-    setInterval(() => {
-      const star = document.createElement('div');
-      star.className = 'shooting-star';
-      star.style.left = `${Math.random() * 100}vw`;
-      document.body.appendChild(star);
-      setTimeout(() => star.remove(), 3000);
-    }, 5000);
-  </script>
-</body>
+        <div class="wrapper">
+        <h1>Countdown to the move!</h1>
+        <div class="clock">
+            <!-- Days -->
+            <div class="clock_days">
+                <div class="bgLayer">
+                    <div class="topLayer"></div>
+                    <canvas id="canvas_days" width="188" height="188">
+                    </canvas>
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type_days">Days</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Days -->
+            <!-- Hours -->
+            <div class="clock_hours">
+                <div class="bgLayer">
+                    <div class="topLayer"></div>
+                    <canvas id="canvas_hours" width="188" height="188">
+                    </canvas>
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type_hours">Hours</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Hours -->
+            <!-- Minutes -->
+            <div class="clock_minutes">
+                <div class="bgLayer">
+                    <div class="topLayer"></div>
+                    <canvas id="canvas_minutes" width="188" height="188">
+                    </canvas>
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type_minutes">Minutes</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Minutes -->
+            <!-- Seconds -->
+            <div class="clock_seconds">
+                <div class="bgLayer">
+                    <div class="topLayer"></div>
+                    <canvas id="canvas_seconds" width="188" height="188">
+                    </canvas>
+                    <div class="text">
+                        <p class="val">0</p>
+                        <p class="type_seconds">Seconds</p>
+                    </div>
+                </div>
+            </div>
+            <!-- Seconds -->
+        </div>
+        <div class="divider">
+                 <p>Based off a June 10th, 8:00 AM move.</p>
+        </div>
+        </div><!--/wrapper-->
+    </body>
 </html>

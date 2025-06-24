@@ -1,33 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
+/* Base layout */
 body {
   margin: 0;
   font-family: 'Lora', serif;
-  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-  overflow: hidden;
+  background: url('https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background-size: cover;
   color: #ffffff;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
   position: relative;
+  overflow: hidden;
 }
 
-/* Glowing Moon */
-.moon {
-  width: 120px;
-  height: 120px;
-  background: #f4f4f4;
-  border-radius: 50%;
+/* Star animations */
+body::before {
+  content: "";
   position: absolute;
-  top: 60px;
-  left: 60px;
-  box-shadow: 0 0 60px 20px #fdfbd3, 0 0 120px 40px #e0e0aa inset;
+  width: 200%;
+  height: 200%;
+  background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+  animation: twinkle 60s linear infinite;
+  opacity: 0.3;
   z-index: 0;
 }
 
+@keyframes twinkle {
+  from { transform: translate(0, 0); }
+  to { transform: translate(-500px, -500px); }
+}
+
+/* Main container */
 .container {
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.65);
   padding: 40px 30px;
   border-radius: 20px;
   text-align: center;

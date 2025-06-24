@@ -1,95 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            margin: 0;
+            overflow: hidden; /* Hide scrollbars */
+            background-image: url('http://googleusercontent.com/generated_image_content/0');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-        <title>Countdown</title>
-        <link rel="stylesheet" href="static/css/jbclock.css" type="text/css" media="all" />
-        <script type="text/javascript" src="static/js/jquery-1.8.0.min.js"></script>
-        <script type="text/javascript" src="static/js/jbclock.js"></script>
-                <script type="text/javascript">
-            $(document).ready(function(){
-                JBCountDown({
-                    secondsColor : "#ffdc50",
-                    secondsGlow  : "none",
+        #countdown {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px #000000;
+        }
 
-                    minutesColor : "#9cdb7d",
-                    minutesGlow  : "none",
+        .star {
+            position: absolute;
+            top: -20px;
+            color: white;
+            animation: animate 5s linear forwards;
+            font-size: 12px;
+        }
 
-                    hoursColor   : "#378cff",
-                    hoursGlow    : "none",
+        .star::before {
+            content: "*"; /* Changed to a simple star */
+            text-shadow: 0 0 5px #fff, 0 0 20px #fff, 0 0 50px #fff;
+        }
 
-                    daysColor    : "#ff6565",
-                    daysGlow     : "none",
+        @keyframes animate {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="countdown"></div>
 
-                    startDate   : "{{ start }}",
-                    endDate     : "{{ end }}",
-                    now         : "{{ now }}"
-                });
-            });
-        </script>
-    </head>
-    <body>
+    <script>
+        function stars() {
+            let e = document.createElement("div");
+            e.setAttribute("class", "star");
+            document.body.appendChild(e);
+            e.style.left = Math.random() * +innerWidth + "px";
 
-        <div class="wrapper">
-        <h1>Countdown to the move!</h1>
-        <div class="clock">
-            <!-- Days -->
-            <div class="clock_days">
-                <div class="bgLayer">
-                    <div class="topLayer"></div>
-                    <canvas id="canvas_days" width="188" height="188">
-                    </canvas>
-                    <div class="text">
-                        <p class="val">0</p>
-                        <p class="type_days">Days</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Days -->
-            <!-- Hours -->
-            <div class="clock_hours">
-                <div class="bgLayer">
-                    <div class="topLayer"></div>
-                    <canvas id="canvas_hours" width="188" height="188">
-                    </canvas>
-                    <div class="text">
-                        <p class="val">0</p>
-                        <p class="type_hours">Hours</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Hours -->
-            <!-- Minutes -->
-            <div class="clock_minutes">
-                <div class="bgLayer">
-                    <div class="topLayer"></div>
-                    <canvas id="canvas_minutes" width="188" height="188">
-                    </canvas>
-                    <div class="text">
-                        <p class="val">0</p>
-                        <p class="type_minutes">Minutes</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Minutes -->
-            <!-- Seconds -->
-            <div class="clock_seconds">
-                <div class="bgLayer">
-                    <div class="topLayer"></div>
-                    <canvas id="canvas_seconds" width="188" height="188">
-                    </canvas>
-                    <div class="text">
-                        <p class="val">0</p>
-                        <p class="type_seconds">Seconds</p>
-                    </div>
-                </div>
-            </div>
-            <!-- Seconds -->
-        </div>
-        <div class="divider">
-                 <p>Based off a June 10th, 8:00 AM move.</p>
-        </div>
-        </div><!--/wrapper-->
-    </body>
+            let duration = Math.random() * 3;
+
+            e.style.animationDuration = 2 + duration + "s";
+            setTimeout(function () {
+                document.body.removeChild(e);
+            }, 5000);
+        }
+        setInterval(function () {
+            stars();
+        }, 50);
+
+        // Set the date we're counting down to
+        const birthday = new Date("Oct 24, 2025 00:00:00").getTime();
+
+        // Update the countdown every 1 second
+        const x = setInterval(function() {
+
+            // Get today's date and time
+            const now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            const distance = birthday - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Display the result in the element with id="countdown"
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h "
+            + minutes + "m " + seconds + "s ";
+
+            // If the count down is finished, write some text
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "Happy Birthday!";
+            }
+        }, 1000);
+    </script>
+</body>
 </html>

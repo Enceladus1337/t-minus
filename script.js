@@ -1,5 +1,5 @@
 // Set her birthday here — change the month and day
-const birthday = "08-15"; // August 15
+const birthday = "10-24"; // August 15
 
 function getNextBirthday() {
   const today = new Date();

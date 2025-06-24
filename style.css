@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
 body {
+  body {
   margin: 0;
   font-family: 'Lora', serif;
-  background: url('https://images.unsplash.com/photo-1606744824161-8d3761d37b14?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+  background: url('https://solarsystem.nasa.gov/system/feature_items/images/144_encyceladus_cassini.jpg') no-repeat center center fixed;
   background-size: cover;
   color: #ffffff;
   min-height: 100vh;

@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
 
-/* Base layout */
 body {
   margin: 0;
   font-family: 'Lora', serif;
@@ -11,18 +10,18 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative;
   overflow: hidden;
+  position: relative;
 }
 
-/* Star animations */
+/* Twinkling stars */
 body::before {
   content: "";
   position: absolute;
   width: 200%;
   height: 200%;
   background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-  animation: twinkle 60s linear infinite;
+  animation: twinkle 100s linear infinite;
   opacity: 0.3;
   z-index: 0;
 }
@@ -32,16 +31,66 @@ body::before {
   to { transform: translate(-500px, -500px); }
 }
 
-/* Main container */
+/* Floating hearts */
+.heart {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  transform: rotate(45deg);
+  animation: float 10s infinite ease-in;
+  opacity: 0.7;
+  z-index: 0;
+}
+.heart::before, .heart::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: red;
+  border-radius: 50%;
+}
+.heart::before {
+  top: -10px;
+  left: 0;
+}
+.heart::after {
+  left: -10px;
+  top: 0;
+}
+@keyframes float {
+  0% {bottom: -20px; left: 50%; opacity: 0;}
+  50% {opacity: 0.5;}
+  100% {bottom: 100%; left: 60%; opacity: 0;}
+}
+
+/* Shooting star */
+.shooting-star {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  width: 2px;
+  height: 100px;
+  background: white;
+  animation: shoot 3s linear infinite;
+  opacity: 0;
+}
+@keyframes shoot {
+  0% { transform: translateX(0) translateY(0); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateX(-600px) translateY(600px); opacity: 0; }
+}
+
+/* Main content */
 .container {
-  background: rgba(0, 0, 0, 0.65);
+  background: rgba(0, 0, 0, 0.6);
   padding: 40px 30px;
   border-radius: 20px;
   text-align: center;
   max-width: 400px;
   margin: 20px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
-  z-index: 1;
+  z-index: 2;
   position: relative;
 }
 
@@ -88,4 +137,11 @@ h1 {
   margin-top: 30px;
   font-size: 1em;
   color: #e0e0e0;
+}
+
+.audio-player {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  z-index: 3;
 }

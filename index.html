@@ -5,6 +5,151 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Birthday Countdown</title>
   <link rel="stylesheet" href="style.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Lora&display=swap');
+
+    body {
+      margin: 0;
+      font-family: 'Lora', serif;
+      background: url('https://images.unsplash.com/photo-1606744824161-8d3761d37b14?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #ffffff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
+      animation: twinkle 100s linear infinite;
+      opacity: 0.2;
+      z-index: 0;
+    }
+
+    @keyframes twinkle {
+      from { transform: translate(0, 0); }
+      to { transform: translate(-500px, -500px); }
+    }
+
+    .container {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: center;
+      max-width: 400px;
+      margin: 20px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+      z-index: 2;
+      position: relative;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 15px;
+    }
+
+    .message {
+      font-size: 1.2em;
+      margin-bottom: 30px;
+      color: #f8bbd0;
+    }
+
+    #countdown {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    #countdown div {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 10px;
+      min-width: 70px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    #countdown span {
+      font-size: 2em;
+      font-weight: bold;
+      display: block;
+      color: #fff;
+    }
+
+    #countdown p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #ccc;
+    }
+
+    .footer {
+      margin-top: 30px;
+      font-size: 1em;
+      color: #e0e0e0;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 10s infinite ease-in;
+      opacity: 0.7;
+      z-index: 1;
+    }
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+    @keyframes float {
+      0% {bottom: -20px; left: 50%; opacity: 0;}
+      50% {opacity: 0.5;}
+      100% {bottom: 100%; left: 60%; opacity: 0;}
+    }
+
+    .shooting-star {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 2px;
+      height: 100px;
+      background: white;
+      animation: shoot 3s linear infinite;
+      opacity: 0;
+    }
+    @keyframes shoot {
+      0% { transform: translateX(0) translateY(0); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateX(-600px) translateY(600px); opacity: 0; }
+    }
+
+    .audio-player {
+      position: absolute;
+      bottom: 15px;
+      left: 15px;
+      z-index: 3;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -46,7 +191,6 @@
     setInterval(countdown, 1000);
     countdown();
 
-    // Floating hearts
     setInterval(() => {
       const heart = document.createElement('div');
       heart.className = 'heart';
@@ -56,7 +200,6 @@
       setTimeout(() => heart.remove(), 10000);
     }, 1000);
 
-    // Shooting stars
     setInterval(() => {
       const star = document.createElement('div');
       star.className = 'shooting-star';

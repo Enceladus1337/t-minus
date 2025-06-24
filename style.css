@@ -1,12 +1,56 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #ffe6f0;
-  color: #d63384;
-  padding: 50px;
+  margin: 0;
+  font-family: 'Dancing Script', cursive;
+  background: linear-gradient(to right, #ffe6f0, #fff0f5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  color: #c2185b;
 }
 
-#countdown p {
-  font-size: 24px;
-  margin: 10px 0;
+.container {
+  text-align: center;
+  background: white;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin: 20px;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 10px;
+}
+
+.message {
+  font-size: 1.2em;
+  margin-bottom: 30px;
+  color: #d81b60;
+}
+
+#countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+#countdown div {
+  background: #ffe0ec;
+  padding: 10px;
+  border-radius: 10px;
+  min-width: 60px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+#countdown span {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.footer {
+  margin-top: 30px;
+  font-size: 1em;
+  color: #880e4f;
 }

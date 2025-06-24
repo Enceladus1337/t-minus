@@ -1,17 +1,44 @@
-<!-- Audio (autoplay soft music) -->
-<div class="audio-player">
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/17/audio_a2c52dce54.mp3?filename=moonlight-romance-21671.mp3" type="audio/mpeg">
-  </audio>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Birthday Countdown</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
 
-<!-- Floating hearts -->
-<div class="heart" style="left: 10%; animation-delay: 1s;"></div>
-<div class="heart" style="left: 30%; animation-delay: 3s;"></div>
-<div class="heart" style="left: 50%; animation-delay: 5s;"></div>
-<div class="heart" style="left: 70%; animation-delay: 2s;"></div>
-<div class="heart" style="left: 90%; animation-delay: 4s;"></div>
+  <!-- Music -->
+  <div class="audio-player">
+    <audio autoplay loop>
+      <source src="https://cdn.pixabay.com/download/audio/2022/03/17/audio_a2c52dce54.mp3?filename=moonlight-romance-21671.mp3" type="audio/mpeg">
+    </audio>
+  </div>
 
-<!-- Shooting stars -->
-<div class="shooting-star" style="top: 10%; left: 90%; animation-delay: 2s;"></div>
-<div class="shooting-star" style="top: 20%; left: 95%; animation-delay: 5s;"></div>
+  <!-- Hearts -->
+  <div class="heart" style="left: 10%; animation-delay: 1s;"></div>
+  <div class="heart" style="left: 30%; animation-delay: 3s;"></div>
+  <div class="heart" style="left: 50%; animation-delay: 5s;"></div>
+  <div class="heart" style="left: 70%; animation-delay: 2s;"></div>
+  <div class="heart" style="left: 90%; animation-delay: 4s;"></div>
+
+  <!-- Shooting Stars -->
+  <div class="shooting-star" style="top: 10%; left: 90%; animation-delay: 2s;"></div>
+  <div class="shooting-star" style="top: 20%; left: 95%; animation-delay: 5s;"></div>
+
+  <!-- Main content -->
+  <div class="container">
+    <h1>Counting Down to Your Special Day 🎂</h1>
+    <div class="message">My love, here's how long until your birthday arrives 🩷</div>
+    <div id="countdown">
+      <div><span id="days">--</span><p>Days</p></div>
+      <div><span id="hours">--</span><p>Hours</p></div>
+      <div><span id="minutes">--</span><p>Minutes</p></div>
+      <div><span id="seconds">--</span><p>Seconds</p></div>
+    </div>
+    <div class="footer">You're my moon in a world full of stars 🌙</div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

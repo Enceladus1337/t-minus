@@ -3,15 +3,27 @@
 body {
   margin: 0;
   font-family: 'Lora', serif;
-  background: url('https://cdn.pixabay.com/photo/2017/01/18/17/14/moon-1999020_1280.jpg') no-repeat center center fixed;
-  background-size: cover;
-  background-color: #000; /* fallback in case image fails */
+  background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+  overflow: hidden;
   color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
+  position: relative;
 }
+
+/* Glowing Moon */
+.moon {
+  width: 120px;
+  height: 120px;
+  background: #f4f4f4;
+  border-radius: 50%;
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  box-shadow: 0 0 60px 20px #fdfbd3, 0 0 120px 40px #e0e0aa inset;
+  z-index: 0;
 }
 
 .container {
@@ -22,6 +34,8 @@ body {
   max-width: 400px;
   margin: 20px;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.4);
+  z-index: 1;
+  position: relative;
 }
 
 h1 {

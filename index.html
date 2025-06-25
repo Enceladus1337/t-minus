@@ -17,10 +17,7 @@
 
     body {
       font-family: 'Bitter', serif;
-      background-image: url('https://i.supaimg.com/168fd6c2-a571-457f-b912-91d1b7c0d213.jpg');
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed;
+      background-color: #000;
       color: #fff;
       text-align: center;
       min-height: 100vh;
@@ -29,8 +26,6 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      transition: background-image 1s ease-in-out;
-      backdrop-filter: blur(2px);
     }
 
     h1 {
@@ -44,12 +39,21 @@
       font-family: 'Orbitron', sans-serif;
       font-size: 2rem;
       font-weight: 500;
-      background: rgba(0, 0, 0, 0.5);
+      background: rgba(255, 255, 255, 0.1);
       padding: 15px 30px;
       border-radius: 15px;
       margin-top: 10px;
       margin-bottom: 30px;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    }
+
+    #ghibli-art {
+      width: 90%;
+      max-width: 500px;
+      border: 8px solid #fff;
+      box-shadow: 0 0 25px rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      margin: 30px 0;
     }
 
     #quote {
@@ -78,10 +82,12 @@
 
   <div id="countdown">Loading...</div>
 
+  <img id="ghibli-art" src="https://i.supaimg.com/f36304c8-a430-4489-ad79-399404ce0192.jpg" alt="Ghibli Art" />
+
   <div id="quote">Loading quote...</div>
 
   <script>
-    // Countdown logic
+    // Countdown
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("October 24, 2025 00:00:00").getTime();
 

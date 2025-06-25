@@ -84,7 +84,8 @@
       display: none;
       flex-direction: column;
       align-items: center;
-      margin-top: 30px;
+      margin-top: 20px;
+      padding: 0;
       opacity: 0;
       transition: opacity 2s ease-in-out;
     }
@@ -95,12 +96,14 @@
     }
 
     #photo {
-      width: 90%;
+      width: 100%;
       max-width: 400px;
+      height: auto;
+      display: block;
       border: 8px solid #fff;
       border-radius: 15px;
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-      margin-bottom: 20px;
+      margin: 0 auto 20px auto;
     }
 
     #love-quote {
@@ -172,14 +175,15 @@
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Reveal
     document.getElementById("tap-btn").addEventListener("click", () => {
-      document.getElementById("hidden-content").classList.add("show");
+      const hidden = document.getElementById("hidden-content");
+      hidden.classList.add("show");
       document.getElementById("tap-btn").style.display = "none";
-      document.getElementById("hidden-content").scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        hidden.scrollIntoView({ behavior: 'smooth' });
+      }, 300);
     });
 
-    // Rotating quotes
     const quotes = [
       "I orbit around you — forever pulled by your gravity.",
       "Even moons need someone to shine for.",
@@ -195,7 +199,6 @@
     }
     updateQuote();
 
-    // Stars
     for (let i = 0; i < 100; i++) {
       const star = document.createElement("div");
       star.classList.add("star");

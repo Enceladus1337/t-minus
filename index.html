@@ -2,7 +2,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Countdown to You 🌙</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">  <style>
+  <title>Countdown to You 🌙</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">  <style>
     * {
       margin: 0;
       padding: 0;
@@ -10,23 +11,19 @@
     }
 
     html, body {
-      height: 100%;
+      height: auto;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Bitter', serif;
       background-image: url('https://i.supaimg.com/168fd6c2-a571-457f-b912-91d1b7c0d213.jpg');
       background-size: cover;
-      background-position: center;
       background-attachment: fixed;
-      background-repeat: no-repeat;
+      background-position: center;
       color: #fff;
-      text-align: center;
-      min-height: 100vh;
       padding: 30px 20px 100px;
-      display: block;
-      backdrop-filter: blur(2px);
       position: relative;
     }
 
@@ -66,18 +63,9 @@
     }
 
     @keyframes pulse {
-      0% {
-        transform: scale(1);
-        box-shadow: 0 0 15px rgba(255, 105, 135, 0.3);
-      }
-      50% {
-        transform: scale(1.08);
-        box-shadow: 0 0 30px rgba(255, 105, 135, 0.6);
-      }
-      100% {
-        transform: scale(1);
-        box-shadow: 0 0 15px rgba(255, 105, 135, 0.3);
-      }
+      0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 105, 135, 0.3); }
+      50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(255, 105, 135, 0.6); }
+      100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 105, 135, 0.3); }
     }
 
     #hidden-content {
@@ -120,6 +108,26 @@
       text-shadow: 1px 1px 8px #000;
     }
 
+    .aurora {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 50%, rgba(0,255,255,0.2), transparent),
+                  radial-gradient(circle at 30% 30%, rgba(0,255,127,0.2), transparent),
+                  radial-gradient(circle at 70% 70%, rgba(138,43,226,0.15), transparent);
+      animation: aurora-move 15s ease-in-out infinite;
+      z-index: 0;
+    }
+
+    @keyframes aurora-move {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
     .star {
       position: absolute;
       width: 2px;
@@ -134,6 +142,18 @@
       50% { opacity: 1; }
     }
 
+    .star-map {
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .star-map img {
+      max-width: 90%;
+      border: 4px solid #fff;
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255,255,255,0.3);
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 2rem; }
       #countdown { font-size: 1.4rem; }
@@ -142,7 +162,7 @@
     }
   </style></head>
 <body>
-  <h1>Counting Down to You 🌙</h1>
+  <div class="aurora"></div>  <h1>Counting Down to You 🌙</h1>
   <div id="countdown">Loading...</div>
   <button id="tap-btn">❤️ Tap here ❤️</button>  <audio id="bg-music" autoplay loop>
     <source src="your-piano.mp3" type="audio/mp3">
@@ -150,6 +170,9 @@
     <img id="photo" src="https://i.supaimg.com/f36304c8-a430-4489-ad79-399404ce0192.jpg" alt="Surprise Photo">
     <div id="love-quote">I love you 😘😋</div>
     <div id="rotating-quote">Loading quote...</div>
+  </div>  <div class="star-map">
+    <h2>How the stars looked in Singapore on October 24 🌌</h2>
+    <img src="https://api.star-map-generator.com/star-map?date=2024-10-24&location=Singapore&color=white&size=500" alt="Star Map of Singapore">
   </div>  <script>
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("October 24, 2025 00:00:00").getTime();
@@ -180,7 +203,7 @@
       hidden.classList.add("show");
       document.getElementById("tap-btn").style.display = "none";
       setTimeout(() => {
-        hidden.scrollIntoView({ behavior: 'smooth' });
+        hidden.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 300);
     });
 

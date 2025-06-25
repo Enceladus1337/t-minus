@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Countdown to Your Day 🎂</title>
+  <title>Countdown to You 🌙</title>
 
-  <!-- Font: Bitter -->
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
 
   <style>
     * {
@@ -17,7 +17,6 @@
 
     body {
       font-family: 'Bitter', serif;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -29,6 +28,7 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      transition: background-image 1s ease-in-out;
       backdrop-filter: blur(2px);
     }
 
@@ -40,8 +40,9 @@
     }
 
     #countdown {
-      font-size: 1.8rem;
-      font-weight: bold;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem;
+      font-weight: 500;
       background: rgba(0, 0, 0, 0.5);
       padding: 15px 30px;
       border-radius: 15px;
@@ -79,7 +80,24 @@
   <div id="quote">Loading quote...</div>
 
   <script>
-    // Countdown logic
+    // Backgrounds
+    const backgrounds = [
+      "https://i.ibb.co/MnfKDYs/1.jpg", // 00:00 – 07:59
+      "https://i.ibb.co/gmjY65M/2.jpg", // 08:00 – 15:59
+      "https://i.ibb.co/VBFbwz6/3.jpg"  // 16:00 – 23:59
+    ];
+
+    function setBackgroundByTime() {
+      const hour = new Date().getHours();
+      let bgIndex = 0;
+      if (hour >= 8 && hour < 16) bgIndex = 1;
+      else if (hour >= 16) bgIndex = 2;
+      document.body.style.backgroundImage = `url('${backgrounds[bgIndex]}')`;
+    }
+
+    setBackgroundByTime();
+
+    // Countdown
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("October 24, 2025 00:00:00").getTime();
 
@@ -88,7 +106,7 @@
       const distance = targetDate - now;
 
       if (distance <= 0) {
-        countdown.innerHTML = "🎉 Today is your day! 🎂";
+        countdown.innerHTML = "🎉 Today is your day!";
         clearInterval(timer);
         return;
       }
@@ -104,7 +122,7 @@
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Rotating quotes
+    // Quotes
     const quotes = [
       "I orbit around you — forever pulled by your gravity.",
       "Even moons need someone to shine for.",

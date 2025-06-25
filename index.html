@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Countdown to You 🌙</title>
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">
-
-  <style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Countdown to You 🌙</title>  <!-- Fonts -->  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">  <style>
     * {
       margin: 0;
       padding: 0;
@@ -31,6 +25,7 @@
       justify-content: center;
       align-items: center;
       backdrop-filter: blur(2px);
+      overflow: hidden;
     }
 
     h1 {
@@ -50,6 +45,7 @@
       margin-top: 10px;
       margin-bottom: 30px;
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+      animation: pulse 3s infinite;
     }
 
     #tap-btn {
@@ -119,38 +115,43 @@
       text-shadow: 1px 1px 8px #000;
     }
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2rem;
-      }
-      #countdown {
-        font-size: 1.4rem;
-      }
-      #love-quote {
-        font-size: 1.2rem;
-      }
-      #rotating-quote {
-        font-size: 1.1rem;
-      }
+    #audio-control {
+      margin-top: 20px;
+      background: #fff;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 10px;
+      font-family: 'Orbitron', sans-serif;
+      cursor: pointer;
     }
-  </style>
-</head>
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out;
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+  </style></head>
 <body>
-
   <h1>Counting Down to You 🌙</h1>
-
   <div id="countdown">Loading...</div>
-
   <button id="tap-btn">❤️ Tap here ❤️</button>
-
-  <div id="hidden-content">
+  <audio id="bg-music" loop>
+    <source src="your-piano.mp3" type="audio/mp3">
+  </audio>
+  <button id="audio-control">🔇 Music</button>  <div id="hidden-content">
     <img id="photo" src="https://i.supaimg.com/f36304c8-a430-4489-ad79-399404ce0192.jpg" alt="Surprise Photo">
     <div id="love-quote">I love you 😘😋</div>
     <div id="rotating-quote">Loading quote...</div>
-  </div>
-
-  <script>
-    // Countdown
+  </div>  <script>
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("October 24, 2025 00:00:00").getTime();
 
@@ -175,7 +176,7 @@
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Reveal content
+    // Reveal
     document.getElementById("tap-btn").addEventListener("click", () => {
       document.getElementById("hidden-content").classList.add("show");
       document.getElementById("tap-btn").style.display = "none";
@@ -195,9 +196,31 @@
       const index = Math.floor(hour / 3) % quotes.length;
       document.getElementById("rotating-quote").textContent = quotes[index];
     }
-
     updateQuote();
-  </script>
 
-</body>
+    // Music control
+    const bgMusic = document.getElementById("bg-music");
+    const audioBtn = document.getElementById("audio-control");
+    let playing = false;
+
+    audioBtn.addEventListener("click", () => {
+      if (playing) {
+        bgMusic.pause();
+        audioBtn.textContent = "🔇 Music";
+      } else {
+        bgMusic.play();
+        audioBtn.textContent = "🔊 Music";
+      }
+      playing = !playing;
+    });
+
+    // Stars
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+      star.style.left = `${Math.random() * 100}%`;
+      star.style.top = `${Math.random() * 100}%`;
+      document.body.appendChild(star);
+    }
+  </script></body>
 </html>

@@ -57,18 +57,29 @@
       font-size: 1.3rem;
       padding: 12px 24px;
       margin-top: 20px;
-      background-color: #ffe3ec;
-      color: #000;
+      background-color: #ff6b81;
+      color: #fff;
       border: none;
-      border-radius: 10px;
+      border-radius: 50px;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 25px rgba(255, 105, 135, 0.6);
       transition: all 0.3s ease;
+      animation: pulse 1.8s infinite;
     }
 
-    #tap-btn:hover {
-      background-color: #ffb6c1;
-      transform: scale(1.05);
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 105, 135, 0.3);
+      }
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 30px rgba(255, 105, 135, 0.6);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 15px rgba(255, 105, 135, 0.3);
+      }
     }
 
     #hidden-content {
@@ -76,6 +87,13 @@
       flex-direction: column;
       align-items: center;
       margin-top: 30px;
+      opacity: 0;
+      transition: opacity 2s ease-in-out;
+    }
+
+    #hidden-content.show {
+      display: flex;
+      opacity: 1;
     }
 
     #photo {
@@ -91,6 +109,14 @@
       font-size: 1.8rem;
       color: #ffe3ec;
       text-shadow: 1px 1px 10px #000;
+      margin-bottom: 20px;
+    }
+
+    #rotating-quote {
+      font-size: 1.4rem;
+      max-width: 700px;
+      padding: 0 20px;
+      text-shadow: 1px 1px 8px #000;
     }
 
     @media (max-width: 600px) {
@@ -103,6 +129,9 @@
       #love-quote {
         font-size: 1.2rem;
       }
+      #rotating-quote {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
@@ -112,11 +141,12 @@
 
   <div id="countdown">Loading...</div>
 
-  <button id="tap-btn">Tap here</button>
+  <button id="tap-btn">❤️ Tap here ❤️</button>
 
   <div id="hidden-content">
     <img id="photo" src="https://i.supaimg.com/f36304c8-a430-4489-ad79-399404ce0192.jpg" alt="Surprise Photo">
     <div id="love-quote">I love you 😘😋</div>
+    <div id="rotating-quote">Loading quote...</div>
   </div>
 
   <script>
@@ -145,11 +175,28 @@
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Tap button reveal
+    // Reveal content
     document.getElementById("tap-btn").addEventListener("click", () => {
-      document.getElementById("hidden-content").style.display = "flex";
+      document.getElementById("hidden-content").classList.add("show");
       document.getElementById("tap-btn").style.display = "none";
     });
+
+    // Rotating quotes
+    const quotes = [
+      "I orbit around you — forever pulled by your gravity.",
+      "Even moons need someone to shine for.",
+      "You're the reason this frozen heart found warmth.",
+      "Among stars, I found a home in your eyes.",
+      "I may be Enceladus, cold and distant — until you melted me."
+    ];
+
+    function updateQuote() {
+      const hour = new Date().getHours();
+      const index = Math.floor(hour / 3) % quotes.length;
+      document.getElementById("rotating-quote").textContent = quotes[index];
+    }
+
+    updateQuote();
   </script>
 
 </body>

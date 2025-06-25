@@ -9,6 +9,11 @@
       box-sizing: border-box;
     }
 
+    html, body {
+      height: 100%;
+      overflow-x: hidden;
+    }
+
     body {
       font-family: 'Bitter', serif;
       background-image: url('https://i.supaimg.com/168fd6c2-a571-457f-b912-91d1b7c0d213.jpg');
@@ -19,13 +24,10 @@
       color: #fff;
       text-align: center;
       min-height: 100vh;
-      padding: 30px 20px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+      padding: 30px 20px 100px;
+      display: block;
       backdrop-filter: blur(2px);
-      overflow: hidden;
+      position: relative;
     }
 
     h1 {
@@ -115,17 +117,6 @@
       text-shadow: 1px 1px 8px #000;
     }
 
-    #audio-control {
-      margin-top: 20px;
-      background: #fff;
-      color: #000;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 10px;
-      font-family: 'Orbitron', sans-serif;
-      cursor: pointer;
-    }
-
     .star {
       position: absolute;
       width: 2px;
@@ -139,15 +130,20 @@
       0%, 100% { opacity: 0.2; }
       50% { opacity: 1; }
     }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      #countdown { font-size: 1.4rem; }
+      #love-quote { font-size: 1.2rem; }
+      #rotating-quote { font-size: 1.1rem; }
+    }
   </style></head>
 <body>
   <h1>Counting Down to You 🌙</h1>
   <div id="countdown">Loading...</div>
-  <button id="tap-btn">❤️ Tap here ❤️</button>
-  <audio id="bg-music" loop>
+  <button id="tap-btn">❤️ Tap here ❤️</button>  <audio id="bg-music" autoplay loop>
     <source src="your-piano.mp3" type="audio/mp3">
-  </audio>
-  <button id="audio-control">🔇 Music</button>  <div id="hidden-content">
+  </audio>  <div id="hidden-content">
     <img id="photo" src="https://i.supaimg.com/f36304c8-a430-4489-ad79-399404ce0192.jpg" alt="Surprise Photo">
     <div id="love-quote">I love you 😘😋</div>
     <div id="rotating-quote">Loading quote...</div>
@@ -180,6 +176,7 @@
     document.getElementById("tap-btn").addEventListener("click", () => {
       document.getElementById("hidden-content").classList.add("show");
       document.getElementById("tap-btn").style.display = "none";
+      document.getElementById("hidden-content").scrollIntoView({ behavior: 'smooth' });
     });
 
     // Rotating quotes
@@ -197,22 +194,6 @@
       document.getElementById("rotating-quote").textContent = quotes[index];
     }
     updateQuote();
-
-    // Music control
-    const bgMusic = document.getElementById("bg-music");
-    const audioBtn = document.getElementById("audio-control");
-    let playing = false;
-
-    audioBtn.addEventListener("click", () => {
-      if (playing) {
-        bgMusic.pause();
-        audioBtn.textContent = "🔇 Music";
-      } else {
-        bgMusic.play();
-        audioBtn.textContent = "🔊 Music";
-      }
-      playing = !playing;
-    });
 
     // Stars
     for (let i = 0; i < 100; i++) {

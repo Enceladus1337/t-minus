@@ -17,6 +17,7 @@
 
     body {
       font-family: 'Bitter', serif;
+      background-image: url('https://i.supaimg.com/168fd6c2-a571-457f-b912-91d1b7c0d213.jpg');
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -80,24 +81,7 @@
   <div id="quote">Loading quote...</div>
 
   <script>
-    // Backgrounds
-    const backgrounds = [
-      "https://i.ibb.co/MnfKDYs/1.jpg", // 00:00 – 07:59
-      "https://i.ibb.co/gmjY65M/2.jpg", // 08:00 – 15:59
-      "https://i.ibb.co/VBFbwz6/3.jpg"  // 16:00 – 23:59
-    ];
-
-    function setBackgroundByTime() {
-      const hour = new Date().getHours();
-      let bgIndex = 0;
-      if (hour >= 8 && hour < 16) bgIndex = 1;
-      else if (hour >= 16) bgIndex = 2;
-      document.body.style.backgroundImage = `url('${backgrounds[bgIndex]}')`;
-    }
-
-    setBackgroundByTime();
-
-    // Countdown
+    // Countdown logic
     const countdown = document.getElementById("countdown");
     const targetDate = new Date("October 24, 2025 00:00:00").getTime();
 
@@ -122,7 +106,7 @@
     const timer = setInterval(updateCountdown, 1000);
     updateCountdown();
 
-    // Quotes
+    // Rotating quotes
     const quotes = [
       "I orbit around you — forever pulled by your gravity.",
       "Even moons need someone to shine for.",

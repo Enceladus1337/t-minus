@@ -1,198 +1,151 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Countdown to You 🌙</title>
-  <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;700&family=Orbitron:wght@500&display=swap" rel="stylesheet">  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Countdown 🎂</title>
+<style>
+  body {
+    background: radial-gradient(circle at top, #2e003e, #000);
+    color: white;
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    overflow: hidden;
+  }
 
-    html, body {
-      height: auto;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
+  h1 {
+    font-size: 2.5rem;
+    margin-top: 50px;
+  }
 
-    body {
-      font-family: 'Bitter', serif;
-      background-image: url('https://i.supaimg.com/168fd6c2-a571-457f-b912-91d1b7c0d213.jpg');
-      background-size: cover;
-      background-attachment: fixed;
-      background-position: center;
-      color: #fff;
-      padding: 30px 20px 100px;
-      position: relative;
-    }
+  #countdown {
+    font-size: 2rem;
+    margin-top: 20px;
+  }
 
-    h1 {
-      font-size: 3rem;
-      color: #ffe3ec;
-      text-shadow: 2px 2px 10px #000;
-      margin-bottom: 10px;
-    }
+  #hidden-content {
+    display: none;
+    opacity: 0;
+    transition: opacity 2s;
+  }
 
-    #countdown {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 2rem;
-      font-weight: 500;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 15px 30px;
-      border-radius: 15px;
-      margin-top: 10px;
-      margin-bottom: 30px;
-      box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-      animation: pulse 3s infinite;
-    }
+  #hidden-content.show {
+    display: block;
+    opacity: 1;
+  }
 
-    #tap-btn {
-      font-family: 'Orbitron', sans-serif;
-      font-size: 1.3rem;
-      padding: 12px 24px;
-      margin-top: 20px;
-      background-color: #ff6b81;
-      color: #fff;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 0 25px rgba(255, 105, 135, 0.6);
-      transition: all 0.3s ease;
-      animation: pulse 1.8s infinite;
-    }
+  /* Floating balloons & hearts */
+  .floating {
+    position: fixed;
+    bottom: -50px;
+    font-size: 2rem;
+    opacity: 0.8;
+    animation: floatUp 10s linear infinite;
+  }
 
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 105, 135, 0.3); }
-      50% { transform: scale(1.08); box-shadow: 0 0 30px rgba(255, 105, 135, 0.6); }
-      100% { transform: scale(1); box-shadow: 0 0 15px rgba(255, 105, 135, 0.3); }
+  @keyframes floatUp {
+    0% {
+      transform: translateY(0) scale(0.8);
+      opacity: 0.8;
     }
-
-    #hidden-content {
-      display: none;
-      flex-direction: column;
-      align-items: center;
-      margin-top: 20px;
-      padding: 0;
+    100% {
+      transform: translateY(-120vh) scale(1.2);
       opacity: 0;
-      transition: opacity 2s ease-in-out;
     }
+  }
 
-    #hidden-content.show {
-      display: flex;
-      opacity: 1;
-    }
+  /* Glowing text */
+  @keyframes glow {
+    0%, 100% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff0080; }
+    50% { text-shadow: 0 0 20px #00ffff, 0 0 30px #ff80ff; }
+  }
 
-    #photo {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-      display: block;
-      border: 8px solid #fff;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-      margin: 0 auto 20px auto;
-    }
+  .glow {
+    animation: glow 2s ease-in-out infinite;
+    font-size: 3rem;
+    margin-top: 20px;
+  }
 
-    #love-quote {
-      font-size: 1.8rem;
-      color: #ffe3ec;
-      text-shadow: 1px 1px 10px #000;
-      margin-bottom: 20px;
-    }
-
-    #rotating-quote {
-      font-size: 1.4rem;
-      max-width: 700px;
-      padding: 0 20px;
-      text-shadow: 1px 1px 8px #000;
-    }
-
-    .star {
-      position: absolute;
-      width: 2px;
-      height: 2px;
-      background: white;
-      border-radius: 50%;
-      animation: twinkle 2s infinite ease-in-out;
-    }
-
-    @keyframes twinkle {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2rem; }
-      #countdown { font-size: 1.4rem; }
-      #love-quote { font-size: 1.2rem; }
-      #rotating-quote { font-size: 1.1rem; }
-    }
-  </style></head>
+</style>
+</head>
 <body>
-  <h1>Counting Down to You 🌙</h1>
-  <div id="countdown">Loading...</div>
-  <button id="tap-btn">❤️ Tap here ❤️</button>  <audio id="bg-music" autoplay loop>
-    <source src="your-piano.mp3" type="audio/mp3">
-  </audio>  <div id="hidden-content">
-    <img id="photo" src="https://i.supaimg.com/f36304c8-a430-4489-ad79-399404ce0192.jpg" alt="Surprise Photo">
-    <div id="love-quote">I love you 😘😋</div>
-    <div id="rotating-quote">Loading quote...</div>
-  </div>  <script>
-    const countdown = document.getElementById("countdown");
-    const targetDate = new Date("October 24, 2025 00:00:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+<h1>Birthday Countdown 💫</h1>
+<div id="countdown"></div>
+<audio id="bg-music" autoplay loop>
+  <source src="piano-loop.mp3" type="audio/mp3">
+</audio>
 
-      if (distance <= 0) {
-        countdown.innerHTML = "🎉 Today is your day!";
-        clearInterval(timer);
-        return;
-      }
+<div id="hidden-content">
+  <h2 class="glow">🎉 Happy Birthday, My Love ❤️</h2>
+  <p>You make the world brighter just by existing.</p>
+</div>
 
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+<script>
+const countdown = document.getElementById("countdown");
+const targetDate = new Date("October 23, 2025 21:30:00").getTime();
+const hiddenContent = document.getElementById("hidden-content");
+const bgMusic = document.getElementById("bg-music");
 
-      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }
+function spawnFloatingEmoji(emoji) {
+  const elem = document.createElement("div");
+  elem.className = "floating";
+  elem.innerText = emoji;
+  elem.style.left = Math.random() * 100 + "vw";
+  elem.style.animationDuration = 6 + Math.random() * 4 + "s";
+  document.body.appendChild(elem);
+  setTimeout(() => elem.remove(), 10000);
+}
 
-    const timer = setInterval(updateCountdown, 1000);
-    updateCountdown();
+const timer = setInterval(() => {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
 
-    document.getElementById("tap-btn").addEventListener("click", () => {
-      const hidden = document.getElementById("hidden-content");
-      hidden.classList.add("show");
-      document.getElementById("tap-btn").style.display = "none";
-      setTimeout(() => {
-        hidden.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 300);
-    });
+  if (distance <= 0) {
+    clearInterval(timer);
+    countdown.innerHTML = "";
 
-    const quotes = [
-      "I orbit around you — forever pulled by your gravity.",
-      "Even moons need someone to shine for.",
-      "You're the reason this frozen heart found warmth.",
-      "Among stars, I found a home in your eyes.",
-      "I may be Enceladus, cold and distant — until you melted me."
-    ];
+    hiddenContent.classList.add("show");
+    bgMusic.pause();
+    bgMusic.src = "happy-birthday.mp3";
+    bgMusic.play();
 
-    function updateQuote() {
-      const hour = new Date().getHours();
-      const index = Math.floor(hour / 3) % quotes.length;
-      document.getElementById("rotating-quote").textContent = quotes[index];
-    }
-    updateQuote();
+    // Confetti burst
+    const duration = 5 * 1000;
+    const end = Date.now() + duration;
+    (function frame() {
+      confetti({
+        particleCount: 8,
+        angle: 60,
+        spread: 55,
+        origin: { x: 0 }
+      });
+      confetti({
+        particleCount: 8,
+        angle: 120,
+        spread: 55,
+        origin: { x: 1 }
+      });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
 
-    for (let i = 0; i < 100; i++) {
-      const star = document.createElement("div");
-      star.classList.add("star");
-      star.style.left = `${Math.random() * 100}%`;
-      star.style.top = `${Math.random() * 100}%`;
-      document.body.appendChild(star);
-    }
-  </script></body>
+    // Balloons and hearts nonstop
+    setInterval(() => {
+      spawnFloatingEmoji("🎈");
+      spawnFloatingEmoji("❤️");
+      spawnFloatingEmoji("💖");
+      spawnFloatingEmoji("🎂");
+    }, 800);
+
+  } else {
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdown.innerHTML = `Time left: ${hours}h ${minutes}m ${seconds}s`;
+  }
+}, 1000);
+</script>
+</body>
 </html>
